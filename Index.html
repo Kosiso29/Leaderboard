@@ -6,63 +6,176 @@
     th{
         color:#fff;
             }
+    .cursorState{
+      cursor: pointer;
+    }
+    .greenBack{
+      background: green;
+    }
+    .yellowBack{
+      background: yellow;
+    }
+    .blueBack{
+      background: blue;
+    }
 </style>
+
+<div class="row">
+  <div class="col">
+    <div class="card card-body">
+      <input id="search-input" type="text" class="form-contol">
+
+    </div>
+
+  </div>
+
+</div>
 
 
 <table class="table table-striped">
     <tr  class="bg-info">
-        <th>Name</th>
-        <th>username</th>
-        <th>email</th>
-        <th>TotalPoints</th>
+        <th class="cursorState" data-column="name" data-order="desc">Name (Sort) </th>
+        <th class="cursorState" data-column="username" data-order="desc">username (Sort) </th>
+        <th class="cursorState" data-column="email" data-order="desc">email (Sort) </th>
+        <th class="cursorState" data-column="TotalPoints" data-order="desc">TotalPoints (Sort) </th>
+        <th class="cursorState">Share</th>
     </tr>
 
-    <!--tbody id="myTable">
+    <tbody id="myTable">
 
-    </tbody-->
+    </tbody>
 </table>
 
 <script>
+  var myArray = [];
   $(document).ready(function(){
     $.ajax({
       url:"data.json",
       dataType:"json",
       success:function(data){
-        $(data.users).each(function(index,value){
-          var record="<tr><td>"+value.name+"</td><td>"+
+
+          /*var record="<tr><td>"+value.name+"</td><td>"+
             value.username+"</td><td>"+value.email+"</td><td>"+value.TotalPoints+"</td><td>";
-              $("table").append(record);
-        });
+              $("table").append(record);*/
+              myArray = data.users
+              buildTable(myArray)
+              console.log(myArray)
+
       }
     })
-  })
-	/*var myArray = [
-	    {'name':'Michael', 'username':'30', 'email': 'kafoenyi@yahoo.com', 'TotalPoints':'11/10/1989'},
-	    {'name':'Michael', 'username':'30', 'email': 'kafoenyi@yahoo.com', 'TotalPoints':'11/10/1989'},
-	    {'name':'Michael', 'username':'30', 'email': 'kafoenyi@yahoo.com', 'TotalPoints':'11/10/1989'},
-	    {'name':'Michael', 'username':'30', 'email': 'kafoenyi@yahoo.com', 'TotalPoints':'11/10/1989'},
-	    {'name':'Michael', 'username':'30', 'email': 'kafoenyi@yahoo.com', 'TotalPoints':'11/10/1989'},
-	    {'name':'Michael', 'username':'30', 'email': 'kafoenyi@yahoo.com', 'TotalPoints':'11/10/1989'},
-	]
+  });
 
-	buildTable(myArray)
 
+  $('th').on('click', function(){
+    var column = $(this).data('column')
+    var order = $(this).data('order')
+    var text = $(this).html()
+    text = text.substring(0, text.length - 1)
+
+    if(order == 'desc'){
+      $(this).data('order', "asc")
+      myArray = myArray.sort((a,b) => a[column] > b[column] ? 1 : -1)
+      text += '&#9660'
+    }
+    else {
+      $(this).data('order', "desc")
+      myArray = myArray.sort((a,b) => a[column] < b[column] ? 1 : -1)
+      text += '&#9650'
+    }
+    $(this).html(text)
+    buildTable(myArray)
+  });
+
+	/*$.ajax({
+		method:'GET',
+		url:'data.json',
+    dataType:'json',
+		success:function(response){
+			myArray = response.data
+			buildTable(myArray)
+			console.log(myArray)
+		}
+	})*/
 
 
 	function buildTable(data){
 		var table = document.getElementById('myTable')
+    table.innerHTML = ''
+    var test = 0;
+    for (var i = 0; i< data.length; i++) {
+      if(data[i].TotalPoints > test){
+        test = data[i].TotalPoints
+      }
+    };
+
+    var test2 = 0;
+    for (var i = 0; i< data.length; i++) {
+      if(data[i].TotalPoints > test2){
+        if(data[i].TotalPoints === test){
+
+        }
+        else {
+          test2 = data[i].TotalPoints
+        }
+
+      }
+    };
+
+    var test3 = 0;
+    for (var i = 0; i< data.length; i++) {
+      if(data[i].TotalPoints > test3){
+        if(data[i].TotalPoints === test || data[i].TotalPoints === test2){
+
+        }
+        else{
+          test3 = data[i].TotalPoints
+        }
+
+      }
+    };
 
 		for (var i = 0; i < data.length; i++){
-			var row = `<tr>
-							<td>${data[i].name}</td>
-							<td>${data[i].username}</td>
-							<td>${data[i].email}</td>
-              <td>${data[i].TotalPoints}</td>
-					  </tr>`
-			table.innerHTML += row
-
-
+      if(data[i].TotalPoints === test){
+        var row = `<tr class="greenBack">
+  							<td>${data[i].name}</td>
+  							<td>${data[i].username}</td>
+  							<td>${data[i].email}</td>
+                <td>${data[i].TotalPoints}</td>
+                <td><a href="https://facebook.com">Facebook</a></td>
+  					  </tr>`
+  			table.innerHTML += row
+      }
+      else if (data[i].TotalPoints === test2) {
+        var row = `<tr class="yellowBack">
+  							<td>${data[i].name}</td>
+  							<td>${data[i].username}</td>
+  							<td>${data[i].email}</td>
+                <td>${data[i].TotalPoints}</td>
+                <td><a href="https://facebook.com">Facebook</a></td>
+  					  </tr>`
+  			table.innerHTML += row
+      }
+      else if (data[i].TotalPoints === test3) {
+        var row = `<tr class="blueBack">
+  							<td>${data[i].name}</td>
+  							<td>${data[i].username}</td>
+  							<td>${data[i].email}</td>
+                <td>${data[i].TotalPoints}</td>
+                <td><a href="https://facebook.com">Facebook</a></td>
+  					  </tr>`
+  			table.innerHTML += row
+      }
+      else{
+        var row = `<tr>
+  							<td>${data[i].name}</td>
+  							<td>${data[i].username}</td>
+  							<td>${data[i].email}</td>
+                <td>${data[i].TotalPoints}</td>
+                <td><a href="https://facebook.com">Facebook</a></td>
+  					  </tr>`
+  			table.innerHTML += row
+      }
 		}
-	}*/
+	};
 
 </script>

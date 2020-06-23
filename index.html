@@ -7,7 +7,7 @@
 
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ef1bffbcd0aeaaa"></script>
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
@@ -16,6 +16,39 @@
                 }
         .cursorState{
           cursor: pointer;
+        }
+        .firstPosition{
+          background: green;
+          height: 200px;
+          width: 200px;
+          position: relative;
+          top: 0;
+          left: 200px;
+          color: white;
+          font-weight: bolder;
+          font-size: 5em;
+        }
+        .secondPosition{
+          background: yellow;
+          height: 200px;
+          width: 200px;
+          position: absolute;
+          top: 0;
+          left: 400px;
+          color: white;
+          font-weight: bolder;
+          font-size: 5em;
+        }
+        .thirdPosition{
+          background: blue;
+          height: 200px;
+          width: 200px;
+          position: absolute;
+          top: 0;
+          left: 600px;
+          color: white;
+          font-weight: bolder;
+          font-size: 5em;
         }
         .greenBack{
           background: green;
@@ -30,14 +63,16 @@
 
   </head>
   <body>
-    <div class="row">
-      <div class="col">
-        <div class="card card-body">
-          <input id="search-input" type="text" class="form-contol">
+    <div class="firstPosition">
+      #1
 
-        </div>
+    </div>
+    <div class="secondPosition">
+      #2
 
-      </div>
+    </div>
+    <div class="thirdPosition">
+      #3
 
     </div>
 

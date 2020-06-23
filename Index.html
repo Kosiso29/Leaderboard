@@ -1,5 +1,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ef1bffbcd0aeaaa"></script>
+
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <style>
@@ -38,7 +42,6 @@
         <th class="cursorState" data-column="username" data-order="desc">username (Sort) </th>
         <th class="cursorState" data-column="email" data-order="desc">email (Sort) </th>
         <th class="cursorState" data-column="TotalPoints" data-order="desc">TotalPoints (Sort) </th>
-        <th class="cursorState">Share</th>
     </tr>
 
     <tbody id="myTable">
@@ -141,7 +144,6 @@
   							<td>${data[i].username}</td>
   							<td>${data[i].email}</td>
                 <td>${data[i].TotalPoints}</td>
-                <td><a href="https://facebook.com">Facebook</a></td>
   					  </tr>`
   			table.innerHTML += row
       }
@@ -151,7 +153,6 @@
   							<td>${data[i].username}</td>
   							<td>${data[i].email}</td>
                 <td>${data[i].TotalPoints}</td>
-                <td><a href="https://facebook.com">Facebook</a></td>
   					  </tr>`
   			table.innerHTML += row
       }
@@ -161,7 +162,6 @@
   							<td>${data[i].username}</td>
   							<td>${data[i].email}</td>
                 <td>${data[i].TotalPoints}</td>
-                <td><a href="https://facebook.com">Facebook</a></td>
   					  </tr>`
   			table.innerHTML += row
       }
@@ -171,7 +171,6 @@
   							<td>${data[i].username}</td>
   							<td>${data[i].email}</td>
                 <td>${data[i].TotalPoints}</td>
-                <td><a href="https://facebook.com">Facebook</a></td>
   					  </tr>`
   			table.innerHTML += row
       }
